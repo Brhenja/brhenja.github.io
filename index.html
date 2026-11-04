@@ -4,7 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Brhenja</title>
-<meta name="description" content="Página de Brhenja, creador de Velin, un launcher de Minecraft para gestionar instancias, mods y mundos.">
+<meta name="description" content="Página personal de Brhenja: Velin, videos, novedades y contacto.">
+<link rel="icon" href="icon.png">
+<link rel="apple-touch-icon" href="icon.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Brhenja">
+<meta property="og:description" content="Página personal de Brhenja: Velin, videos, novedades y contacto.">
+<meta property="og:url" content="https://brhenja.github.io/">
+<meta property="og:image" content="https://brhenja.github.io/icon.png">
+<meta name="twitter:card" content="summary">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=MedievalSharp&display=swap">
 <style>
 /* Layout: launcher medieval. Categorías arriba, grilla de carátulas 2:3 al centro,
@@ -177,118 +185,191 @@ a.row:hover, a.row:focus-visible { background: rgba(196, 149, 95, .2); transform
   .box.selected::before { animation: none; }
   .box, .pill, .row { transition: none; }
 }
-</style>
 
+[hidden] { display: none !important; }
+#app { padding-right: max(76px, calc(env(safe-area-inset-right, 0px) + 70px)); }
+.nav .center { padding-right: 0; }
+.bar .url { text-decoration: none; }
+.bar a.url:hover { color: var(--cream); text-decoration: underline; text-underline-offset: 4px; }
+
+.box .shot { position: absolute; left: 0; right: 0; top: 14%; width: 100%; height: 44%; object-fit: cover; background: #1a0f06; border-block: 2px solid rgba(196, 149, 95, .6); }
+.box.has-shot .glyph { inset: 14% 0 auto 0; height: 44%; font-size: calc(var(--cw) * .22); text-shadow: 0 3px 0 rgba(0, 0, 0, .65); }
+.box.has-shot .title { z-index: 1; }
+
+.toggles { position: fixed; right: max(10px, env(safe-area-inset-right, 0px)); top: 50%; transform: translateY(-50%); z-index: 6; display: flex; flex-direction: column; gap: 10px; }
+.tog {
+  appearance: none; display: grid; justify-items: center; gap: 4px; width: 56px; padding: 9px 0 7px;
+  border: 2px solid var(--tan); background: rgba(20, 10, 3, .7); color: var(--cream); cursor: pointer;
+  box-shadow: inset 0 -3px 0 rgba(0, 0, 0, .35); transition: background .12s, opacity .12s;
+}
+.tog svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.tog .lbl { font: 700 9px/1 var(--display); letter-spacing: .12em; text-transform: uppercase; }
+.tog .slash { display: none; stroke-width: 2.2; }
+.tog[aria-pressed="false"] { color: var(--dim); opacity: .65; }
+.tog[aria-pressed="false"] .slash { display: inline; }
+.tog:hover { background: rgba(196, 149, 95, .3); opacity: 1; }
+.tog:focus-visible { outline: 3px solid var(--cream); outline-offset: 2px; }
+
+.doc.wide { max-width: 900px; }
+.hero { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; margin-bottom: 22px; }
+.hero-icon { width: 140px; height: auto; image-rendering: pixelated; filter: drop-shadow(0 8px 0 rgba(0, 0, 0, .35)); }
+.hero h1 { margin: 0; padding: 0; font-size: clamp(48px, 9vw, 84px); }
+.hero h1::after { display: none; }
+.by { margin-top: 8px; font: 700 18px var(--display); letter-spacing: .14em; color: var(--dim); }
+.btns { display: flex; flex-wrap: wrap; gap: 12px; margin: 4px 0 14px; }
+.btn.big { font-size: 18px; padding: 12px 22px; }
+.ver { margin: 0 0 8px; font: 500 14px var(--display); letter-spacing: .08em; color: var(--tan); }
+.ver b { color: var(--cream); }
+
+.log { display: grid; }
+.entry { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 4px 22px; padding: 16px 0; border-top: 2px solid rgba(196, 149, 95, .35); }
+.entry:last-child { border-bottom: 2px solid rgba(196, 149, 95, .35); }
+.entry .when { font: 700 13px var(--display); letter-spacing: .12em; text-transform: uppercase; color: var(--tan); padding-top: 5px; }
+.entry h3 { margin: 0 0 4px; font: 700 20px/1.2 var(--display); letter-spacing: .04em; }
+.entry p { margin: 0; color: var(--dim); max-width: 60ch; }
+
+.features { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px 40px; }
+.features h3 { margin: 0 0 8px; font: 700 18px var(--display); letter-spacing: .08em; text-transform: uppercase; color: var(--tan); }
+.features ul { margin: 0; padding-left: 1.1rem; font-size: 15px; line-height: 1.5; color: var(--cream); }
+.features li { margin-bottom: 4px; }
+.features li::marker { color: var(--tan); }
+
+.faq details { border-top: 2px solid rgba(196, 149, 95, .45); }
+.faq details:last-of-type { border-bottom: 2px solid rgba(196, 149, 95, .45); }
+.faq summary { cursor: pointer; list-style: none; padding: 14px 34px 14px 0; position: relative; color: var(--cream); }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; position: absolute; right: 4px; top: 10px; font: 700 24px var(--display); color: var(--tan); }
+.faq details[open] summary::after { content: "\2212"; }
+.faq summary:focus-visible { outline: 3px solid var(--cream); outline-offset: 2px; }
+.faq details p { margin: 0 0 16px; color: var(--dim); }
+.faq a { color: var(--cream); }
+
+@media (max-width: 700px) {
+  #app { padding-right: max(60px, calc(env(safe-area-inset-right, 0px) + 54px)); }
+  .tog { width: 44px; padding: 7px 0 5px; }
+  .tog svg { width: 18px; height: 18px; }
+  .tog .lbl { display: none; }
+  .features { grid-template-columns: minmax(0, 1fr); }
+  .entry { grid-template-columns: minmax(0, 1fr); }
+  .hero-icon { width: 100px; }
+  .games { gap: 28px 18px; }
+  .stage { padding-left: 16px; padding-right: 8px; }
+}
+</style>
 </head>
 <body>
-<div id="boot" aria-hidden="true">
-  <div class="logo"><span>Brhenja</span><div class="load"><i></i></div></div>
-</div>
+<div id="boot" aria-hidden="true"><div class="logo"><span id="boot-name"></span><div class="load"><i></i></div></div></div>
 <canvas id="dust" aria-hidden="true"></canvas>
-
 <div id="app">
   <header class="nav">
-    <div class="brand">Brhenja</div>
+    <div class="brand"></div>
     <div class="center">
       <button class="keycap shoulder" id="prev" type="button" aria-label="Categoría anterior">Q</button>
       <div class="pills" id="pills" role="tablist" aria-label="Categorías"></div>
       <button class="keycap shoulder" id="next" type="button" aria-label="Categoría siguiente">E</button>
     </div>
   </header>
-
-  <main class="stage" id="stage">
-    <section id="panel-proyectos" role="tabpanel" aria-labelledby="tab-proyectos"><div class="games" id="games-proyectos"></div></section>
-    <section id="panel-velin" role="tabpanel" aria-labelledby="tab-velin" hidden><div class="games" id="games-velin"></div></section>
-
-    <section id="panel-sobre-mi" role="tabpanel" aria-labelledby="tab-sobre-mi" hidden>
-      <div class="doc">
-        <h1>Sobre mí</h1>
-        <p>Soy Brhenja, suelo hacer proyectos relacionados con Minecraft y en general me gusta la optimización. También me gusta hacer videos, aunque actualmente solo tengo uno subido y es medio croto. Después voy a subir una review mejor de Velin.</p>
-        <p>Mi proyecto más reciente es Velin, un launcher de Minecraft ligero. Estoy trabajando en agregar cuentas premium y también estoy empezando a hacer un mod de optimización para Minecraft Java.</p>
-        <h2>Ahora</h2>
-        <dl class="now">
-          <dt>Proyecto actual</dt><dd>Velin, <a href="https://brhenja.github.io/Velin" target="_blank" rel="noopener">brhenja.github.io/Velin</a></dd>
-          <dt>Plataforma</dt><dd>Windows 10 u 11 de 64 bits</dd>
-          <dt>Idiomas</dt><dd>Español e inglés</dd>
-          <dt>Próximamente</dt><dd>Actualizaciones de Velin y un mod de optimización</dd>
-        </dl>
-      </div>
-    </section>
-
-    <section id="panel-contacto" role="tabpanel" aria-labelledby="tab-contacto" hidden>
-      <div class="doc">
-        <h1>Contacto</h1>
-        <div class="rows">
-          <div class="row"><span class="k">Discord</span><span class="v">brhenja.</span><button class="copy" type="button" data-copy="brhenja.">Copiar</button></div>
-          <div class="row"><span class="k">Gmail</span><a class="v" href="mailto:brhenja@gmail.com">brhenja@gmail.com</a><button class="copy" type="button" data-copy="brhenja@gmail.com">Copiar</button></div>
-          <a class="row" href="https://github.com/Brhenja" target="_blank" rel="noopener"><span class="k">GitHub</span><span class="v">github.com/Brhenja</span><span class="go">↗</span></a>
-        </div>
-      </div>
-    </section>
-  </main>
-
+  <main class="stage" id="stage"></main>
   <section class="spot" id="spot" aria-live="polite">
-    <div class="info">
-      <h2 id="spot-title"></h2>
-      <div class="meta" id="spot-meta"></div>
-      <p id="spot-desc"></p>
-    </div>
-    <div class="side">
-      <div class="chips" id="spot-chips"></div>
-      <div class="actions" id="spot-actions"></div>
-    </div>
+    <div class="info"><h2 id="spot-title"></h2><div class="meta" id="spot-meta"></div><p id="spot-desc"></p></div>
+    <div class="side"><div class="chips" id="spot-chips"></div><div class="actions" id="spot-actions"></div></div>
   </section>
-
-  <footer class="bar">
-    <span class="url">brhenja.github.io</span>
-  </footer>
+  <footer class="bar"><span class="bar-left"></span></footer>
+</div>
+<div class="toggles" role="group" aria-label="Sonido">
+  <button class="tog" id="tog-music" type="button" aria-pressed="true" aria-label="Música de fondo" title="Música de fondo">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18V6l10-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="16" r="2.5"/><path class="slash" d="M3 3l18 18"/></svg><span class="lbl">Música</span>
+  </button>
+  <button class="tog" id="tog-sfx" type="button" aria-pressed="true" aria-label="Sonido de click" title="Sonido de click">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16.5 9c1.6 1.6 1.6 4.4 0 6"/><path class="slash" d="M3 3l18 18"/></svg><span class="lbl">Sonido</span>
+  </button>
 </div>
 
+<script>var ASSETS={};function A(p){return ASSETS[p]||p;}</script>
+<script>
+var VELIN = "https://brhenja.github.io/Velin";
+var CHANNEL_URL = ""; // Pegá acá el link de tu canal de YouTube para mostrar el botón "Mi canal"
+var videoLinks = [{ label: "Ver en YouTube", url: "https://www.youtube.com/watch?v=Q0_SXW16naQ" }];
+if (CHANNEL_URL) videoLinks.push({ label: "Mi canal", url: CHANNEL_URL });
+
+window.DECK = {
+  brand: "Brhenja",
+  barLeft: '<span class="url">brhenja.github.io</span>',
+  audio: { music: A("audio/bgmusic.mp3"), click: A("audio/click.wav") },
+  aliases: { novedades: "novedades" },
+  cats: [
+    { id: "proyectos", label: "Proyectos", type: "grid", items: [
+      { name: "Velin", glyph: "V", icon: A("icon.png"), live: true, kind: "Launcher de Minecraft", year: "Última versión v1.0.0",
+        desc: "Launcher de Minecraft Java para Windows: liviano, con muy bajo consumo de recursos y muchas funciones útiles. Instancias, mods, mundos y más.",
+        tags: ["Minecraft", "Windows", "Código abierto"],
+        links: [{ label: "Ver página", url: VELIN }, { label: "Descargar", url: "https://github.com/Brhenja/Velin/releases/download/v1.0.0/VelinSetup-1.0.0.exe", dl: "exe" }, { label: "Código", url: "https://github.com/Brhenja/Velin" }],
+        a: 30, b: 22, motif: "lozenge", seed: 11 },
+      { name: "Mi GitHub", glyph: "GH", kind: "Perfil", year: "Brhenja",
+        desc: "Todos mis repositorios y proyectos, con el código fuente abierto.",
+        tags: ["Código abierto"],
+        links: [{ label: "Abrir perfil", url: "https://github.com/Brhenja" }],
+        a: 36, b: 24, motif: "checker", seed: 37 }
+    ] },
+    { id: "velin", label: "Velin", type: "grid", items: [
+      { name: "Instancias", glyph: "I", kind: "Funciones de Velin",
+        desc: "Cada instancia tiene su propia carpeta: crear, duplicar, renombrar y eliminar. Exportá e importá .zip de Velin, .mrpack de Modrinth y .zip de CurseForge, y cambiá la versión o el loader conservando mundos, mods y configuración.",
+        tags: ["Grupos", "Importar", "Exportar"], a: 28, b: 20, motif: "rings", seed: 101 },
+      { name: "Loaders", glyph: "II", kind: "Funciones de Velin",
+        desc: "Vanilla, Fabric, Forge, Quilt y NeoForge. La lista solo muestra versiones compatibles y elige por defecto la estable más nueva.",
+        tags: ["Vanilla", "Fabric", "Forge", "Quilt", "NeoForge"], a: 22, b: 36, motif: "lozenge", seed: 103 },
+      { name: "Java y lanzamiento", glyph: "III", kind: "Funciones de Velin",
+        desc: "Java Temurin descargado automáticamente según la versión de Minecraft, flags de JVM tipo Aikar, RAM fija por instancia, consola en vivo y log de lanzamiento.",
+        tags: ["Temurin", "Aikar", "Consola"], a: 34, b: 18, motif: "stripes", seed: 107 },
+      { name: "Contenido", glyph: "IV", kind: "Funciones de Velin",
+        desc: "Mods, modpacks, resource packs, shaders y datapacks desde Modrinth y CurseForge, con dependencias automáticas. Mundos con backup, servidores con estado en vivo y capturas de pantalla.",
+        tags: ["Modrinth", "CurseForge", "Mundos"], a: 26, b: 40, motif: "checker", seed: 109 },
+      { name: "Interfaz", glyph: "V", kind: "Funciones de Velin",
+        desc: "Ventana propia sin bordes de Windows, temas personalizables en .json (Velin medieval y Flash), español e inglés y música de fondo opcional.",
+        tags: ["Temas", "ES / EN"], a: 20, b: 32, motif: "rings", seed: 113 }
+    ].map(function (f) { f.links = [{ label: "Ver en la página", url: VELIN + "#funciones" }]; return f; }) },
+    { id: "videos", label: "Videos", type: "grid", items: [
+      { name: "Review de Velin", glyph: "▶", keepGlyph: true, img: "https://i.ytimg.com/vi/Q0_SXW16naQ/hqdefault.jpg", kind: "Video", year: "YouTube",
+        desc: "Mi primer video: una review de Velin. Más adelante voy a subir una mejor.",
+        tags: ["Velin", "Review"], links: videoLinks, a: 18, b: 38, motif: "stripes", seed: 23 }
+    ] },
+    { id: "novedades", label: "Novedades", html:
+      '<div class="doc"><h1>Novedades</h1><div class="log">' +
+      '<article class="entry"><div class="when">En curso</div><div><h3>Cuentas premium en Velin</h3><p>Estoy trabajando en agregar cuentas premium al launcher.</p></div></article>' +
+      '<article class="entry"><div class="when">En curso</div><div><h3>Mod de optimización para Minecraft Java</h3><p>Estoy empezando a hacerlo. Cuando tenga algo para probar lo publico acá.</p></div></article>' +
+      '<article class="entry"><div class="when">Próximamente</div><div><h3>Una review mejor de Velin</h3><p>Voy a subir un video nuevo para reemplazar al primero.</p></div></article>' +
+      '<article class="entry"><div class="when"><span data-reldate>Publicada</span></div><div><h3>Velin <span data-ver>v1.0.0</span></h3><p>Instancias, loaders (Fabric, Forge, Quilt y NeoForge), Java automático, mods y modpacks de Modrinth y CurseForge, mundos, servidores y temas.</p></div></article>' +
+      '<article class="entry"><div class="when">Publicado</div><div><h3>Mi primer video</h3><p>Una review de Velin, hecha sin muchas vueltas.</p></div></article>' +
+      '</div></div>' },
+    { id: "sobre-mi", label: "Sobre mí", html:
+      '<div class="doc"><h1>Sobre mí</h1>' +
+      '<p>Soy Brhenja, suelo hacer proyectos relacionados con Minecraft y en general me gusta la optimización. También me gusta hacer videos, aunque actualmente solo tengo uno subido y es medio croto. Después voy a subir una review mejor de Velin.</p>' +
+      '<p>Mi proyecto más reciente es Velin, un launcher de Minecraft ligero. Estoy trabajando en agregar cuentas premium y también estoy empezando a hacer un mod de optimización para Minecraft Java.</p>' +
+      '<h2>Ahora</h2><dl class="now">' +
+      '<dt>Proyecto actual</dt><dd>Velin, <a href="' + VELIN + '" target="_blank" rel="noopener">brhenja.github.io/Velin</a></dd>' +
+      '<dt>Plataforma</dt><dd>Windows 10 u 11 de 64 bits</dd>' +
+      '<dt>Idiomas</dt><dd>Español e inglés</dd>' +
+      '<dt>Próximamente</dt><dd>Actualizaciones de Velin y un mod de optimización</dd></dl></div>' },
+    { id: "contacto", label: "Contacto", html:
+      '<div class="doc"><h1>Contacto</h1><div class="rows">' +
+      '<div class="row"><span class="k">Discord</span><span class="v">brhenja.</span><button class="copy" type="button" data-copy="brhenja.">Copiar</button></div>' +
+      '<div class="row"><span class="k">Gmail</span><a class="v" href="mailto:brhenja@gmail.com">brhenja@gmail.com</a><button class="copy" type="button" data-copy="brhenja@gmail.com">Copiar</button></div>' +
+      '<a class="row" href="https://github.com/Brhenja" target="_blank" rel="noopener"><span class="k">GitHub</span><span class="v">github.com/Brhenja</span><span class="go">↗</span></a>' +
+      '</div></div>' }
+  ]
+};
+
+</script>
 <script>
 (function () {
-  var VELIN = "https://brhenja.github.io/Velin";
-  var projects = [
-    { name: "Velin", glyph: "V", icon: "icon.png", kind: "Launcher de Minecraft", year: "v1.0.0",
-      desc: "Launcher de Minecraft Java para Windows: liviano, con muy bajo consumo de recursos y muchas funciones útiles. Instancias, mods, mundos y más.",
-      tags: ["Minecraft", "Windows", "Código abierto"],
-      links: [{ label: "Ver página", url: VELIN }, { label: "Código", url: "https://github.com/Brhenja/Velin" }, { label: "Descargas", url: "https://github.com/Brhenja/Velin/releases" }],
-      a: 30, b: 22, motif: "lozenge", seed: 11 },
-    { name: "Review de Velin", glyph: "▶", kind: "Video", year: "YouTube",
-      desc: "Una review del launcher en video, para ver cómo funciona antes de instalarlo.",
-      tags: ["Video"],
-      links: [{ label: "Ver en YouTube", url: "https://www.youtube.com/watch?v=Q0_SXW16naQ" }],
-      a: 18, b: 38, motif: "stripes", seed: 23 },
-    { name: "Mi GitHub", glyph: "GH", kind: "Perfil", year: "Brhenja",
-      desc: "Todos mis repositorios y proyectos, con el código fuente abierto.",
-      tags: ["Código abierto"],
-      links: [{ label: "Abrir perfil", url: "https://github.com/Brhenja" }],
-      a: 36, b: 24, motif: "checker", seed: 37 }
-  ];
-  var funciones = [
-    { name: "Instancias", glyph: "I", kind: "Funciones de Velin",
-      desc: "Cada instancia tiene su propia carpeta: crear, duplicar, renombrar y eliminar. Exportá e importá .zip de Velin, .mrpack de Modrinth y .zip de CurseForge, y cambiá la versión o el loader conservando mundos, mods y configuración.",
-      tags: ["Grupos", "Importar", "Exportar"], a: 28, b: 20, motif: "rings", seed: 101 },
-    { name: "Loaders", glyph: "II", kind: "Funciones de Velin",
-      desc: "Vanilla, Fabric, Forge, Quilt y NeoForge. La lista solo muestra versiones compatibles y elige por defecto la estable más nueva.",
-      tags: ["Vanilla", "Fabric", "Forge", "Quilt", "NeoForge"], a: 22, b: 36, motif: "lozenge", seed: 103 },
-    { name: "Java y lanzamiento", glyph: "III", kind: "Funciones de Velin",
-      desc: "Java Temurin descargado automáticamente según la versión de Minecraft, flags de JVM tipo Aikar, RAM fija por instancia, consola en vivo y log de lanzamiento.",
-      tags: ["Temurin", "Aikar", "Consola"], a: 34, b: 18, motif: "stripes", seed: 107 },
-    { name: "Contenido", glyph: "IV", kind: "Funciones de Velin",
-      desc: "Mods, modpacks, resource packs, shaders y datapacks desde Modrinth y CurseForge, con dependencias automáticas. Mundos con backup, servidores con estado en vivo y capturas de pantalla.",
-      tags: ["Modrinth", "CurseForge", "Mundos"], a: 26, b: 40, motif: "checker", seed: 109 },
-    { name: "Interfaz", glyph: "V", kind: "Funciones de Velin",
-      desc: "Ventana propia sin bordes de Windows, temas personalizables en .json (Velin medieval y Flash), español e inglés y música de fondo opcional.",
-      tags: ["Temas", "ES / EN"], a: 20, b: 32, motif: "rings", seed: 113 }
-  ];
-  funciones.forEach(function (f) { f.links = [{ label: "Ver en la página", url: VELIN + "#funciones" }]; });
-  var cats = [
-    { id: "proyectos", label: "Proyectos", items: projects },
-    { id: "velin", label: "Velin", items: funciones },
-    { id: "sobre-mi", label: "Sobre mí" },
-    { id: "contacto", label: "Contacto" }
-  ];
+  var C = window.DECK, $ = function (s) { return document.querySelector(s); };
+  var cats = C.cats;
+  var state = { cat: 0, sel: {} };
 
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (m) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[m]; }); }
+  function lsGet(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+  function lsSet(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+
+  /* ---------- Arte de las carátulas ---------- */
   function rng(s) { return function () { s |= 0; s = s + 0x6D2B79F5 | 0; var t = Math.imul(s ^ s >>> 15, 1 | s); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
   function art(a, b, motif, seed) {
     var r = rng(seed), g = "", i, x, y;
@@ -301,34 +382,76 @@ a.row:hover, a.row:focus-visible { background: rgba(196, 149, 95, .2); transform
     var frame = '<rect x="8" y="8" width="184" height="284" fill="none" stroke="' + gold + '.45)" stroke-width="1.5"/><rect x="13" y="13" width="174" height="274" fill="none" stroke="' + gold + '.2)" stroke-width="1"/>';
     return '<svg viewBox="0 0 200 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><linearGradient id="g' + seed + '" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="' + c(a, 32) + '"/><stop offset="1" stop-color="' + c(b, 11) + '"/></linearGradient></defs><rect width="200" height="300" fill="url(#g' + seed + ')"/>' + g + frame + "</svg>";
   }
-  function esc(s) { return String(s).replace(/[&<>"]/g, function (m) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[m]; }); }
 
-  var $ = function (s) { return document.querySelector(s); };
+  /* ---------- Sonido y música ---------- */
+  var prefs = { music: lsGet("deck-music") !== "0", sfx: lsGet("deck-sfx") !== "0" };
+  var music = null, click = null, gesture = false, lastClick = 0;
+  if (C.audio && C.audio.music) { music = new Audio(C.audio.music); music.loop = true; music.volume = .28; music.preload = "none"; }
+  if (C.audio && C.audio.click) { click = new Audio(C.audio.click); click.preload = "auto"; }
+  function playMusic() { if (music && prefs.music && gesture && music.paused) { var p = music.play(); if (p && p.catch) p.catch(function () {}); } }
+  function sfx() {
+    if (!prefs.sfx || !click) return;
+    var n = Date.now(); if (n - lastClick < 50) return; lastClick = n;
+    var a = click.cloneNode(); a.volume = .5; var p = a.play(); if (p && p.catch) p.catch(function () {});
+  }
+  function syncToggles() {
+    $("#tog-music").setAttribute("aria-pressed", prefs.music ? "true" : "false");
+    $("#tog-sfx").setAttribute("aria-pressed", prefs.sfx ? "true" : "false");
+  }
+  ["pointerdown", "keydown", "touchend"].forEach(function (ev) { addEventListener(ev, function () { gesture = true; playMusic(); }, { passive: true }); });
+  $("#tog-music").addEventListener("click", function () {
+    prefs.music = !prefs.music; lsSet("deck-music", prefs.music ? "1" : "0"); syncToggles(); gesture = true;
+    if (!music) return;
+    if (prefs.music) playMusic(); else music.pause();
+    sfx();
+  });
+  $("#tog-sfx").addEventListener("click", function () {
+    prefs.sfx = !prefs.sfx; lsSet("deck-sfx", prefs.sfx ? "1" : "0"); syncToggles(); sfx();
+  });
+  document.addEventListener("visibilitychange", function () { if (!music) return; if (document.hidden) music.pause(); else playMusic(); });
+  syncToggles();
+
+  /* ---------- Estructura ---------- */
   var pills = $("#pills"), spot = $("#spot"), stage = $("#stage");
-  var state = { cat: 0, sel: { proyectos: 0, velin: 0 } };
+  $(".brand").textContent = C.brand;
+  $("#boot-name").textContent = C.brand;
+  $(".bar-left").innerHTML = C.barLeft || "";
 
   cats.forEach(function (c, i) {
     var b = document.createElement("button");
     b.className = "pill"; b.type = "button"; b.setAttribute("role", "tab");
     b.id = "tab-" + c.id; b.setAttribute("aria-controls", "panel-" + c.id);
-    b.innerHTML = '<span class="label">' + c.label + "</span>" + (c.items ? '<span class="count">' + c.items.length + "</span>" : "");
-    b.addEventListener("click", function () { setCat(i); });
+    b.innerHTML = '<span class="label">' + esc(c.label) + "</span>" + (c.items ? '<span class="count">' + c.items.length + "</span>" : "");
+    b.addEventListener("click", function () { setCat(i); sfx(); });
     pills.appendChild(b);
+
+    var sec = document.createElement("section");
+    sec.id = "panel-" + c.id; sec.setAttribute("role", "tabpanel"); sec.setAttribute("aria-labelledby", "tab-" + c.id); sec.hidden = true;
+    if (c.items) { sec.innerHTML = '<div class="games" id="games-' + c.id + '"></div>'; state.sel[c.id] = 0; }
+    else sec.innerHTML = c.html;
+    stage.appendChild(sec);
   });
 
   function build(cat) {
     var host = $("#games-" + cat.id);
     cat.items.forEach(function (it, i) {
-      var el = document.createElement("a");
-      el.className = "box"; el.href = it.links[0].url; el.target = "_blank"; el.rel = "noopener";
+      var links = it.links || [], el = document.createElement(links.length ? "a" : "div");
+      el.className = "box"; el.tabIndex = 0;
+      if (links.length) { el.href = links[0].url; el.target = "_blank"; el.rel = "noopener"; }
       el.setAttribute("aria-label", it.name);
       el.innerHTML = '<div class="art">' + art(it.a, it.b, it.motif, it.seed) + '</div><div class="glyph">' + esc(it.glyph) + '</div><div class="title">' + esc(it.name) + "</div>";
+      var glyph = el.querySelector(".glyph"), title = el.querySelector(".title");
       if (it.icon) {
         var im = new Image(); im.className = "icon"; im.alt = ""; im.src = it.icon;
-        im.onload = function () { el.querySelector(".glyph").hidden = true; el.insertBefore(im, el.querySelector(".title")); };
+        im.onload = function () { glyph.hidden = true; el.insertBefore(im, title); };
       }
-      el.addEventListener("mouseenter", function () { select(i, false); });
-      el.addEventListener("focus", function () { if (state.sel[cat.id] !== i) select(i, false); });
+      if (it.img) {
+        var sh = new Image(); sh.className = "shot"; sh.alt = ""; sh.src = it.img;
+        sh.onload = function () { el.classList.add("has-shot"); if (!it.keepGlyph) glyph.hidden = true; el.insertBefore(sh, glyph); };
+      }
+      el.addEventListener("mouseenter", function () { select(cat, i, false); });
+      el.addEventListener("focus", function () { if (state.sel[cat.id] !== i) select(cat, i, false); });
+      el.addEventListener("click", sfx);
       host.appendChild(el);
     });
   }
@@ -344,15 +467,15 @@ a.row:hover, a.row:focus-visible { background: rgba(196, 149, 95, .2); transform
     $("#spot-title").textContent = it.name;
     $("#spot-meta").textContent = it.kind + (it.year ? " · " + it.year : "");
     $("#spot-desc").textContent = it.desc;
-    $("#spot-chips").innerHTML = it.tags.map(function (t) { return '<span class="chip">' + esc(t) + "</span>"; }).join("");
-    $("#spot-actions").innerHTML = it.links.map(function (l) { return '<a class="btn" href="' + esc(l.url) + '" target="_blank" rel="noopener">' + esc(l.label) + "</a>"; }).join("");
+    $("#spot-chips").innerHTML = (it.tags || []).map(function (t) { return '<span class="chip">' + esc(t) + "</span>"; }).join("");
+    $("#spot-actions").innerHTML = (it.links || []).map(function (l) { return '<a class="btn" href="' + esc(l.url) + '" target="_blank" rel="noopener">' + esc(l.label) + "</a>"; }).join("");
   }
 
-  function select(i, scroll) {
-    var c = cats[state.cat]; if (!c.items) return;
+  function select(cat, i, scroll) {
+    if (cats[state.cat] !== cat) return;
     var list = boxes(); i = Math.max(0, Math.min(list.length - 1, i));
     list.forEach(function (b, k) { b.classList.toggle("selected", k === i); });
-    state.sel[c.id] = i;
+    state.sel[cat.id] = i;
     if (scroll) { list[i].focus({ preventScroll: true }); list[i].scrollIntoView({ block: "nearest", behavior: "smooth" }); }
     updateSpot();
   }
@@ -361,11 +484,11 @@ a.row:hover, a.row:focus-visible { background: rgba(196, 149, 95, .2); transform
     i = (i + cats.length) % cats.length; state.cat = i;
     cats.forEach(function (c, k) {
       var on = k === i;
-      $("#tab-" + c.id).setAttribute("aria-selected", on);
+      $("#tab-" + c.id).setAttribute("aria-selected", on ? "true" : "false");
       $("#panel-" + c.id).hidden = !on;
     });
     stage.scrollTop = 0;
-    if (cats[i].items) select(state.sel[cats[i].id] || 0, false); else updateSpot();
+    if (cats[i].items) select(cats[i], state.sel[cats[i].id] || 0, false); else updateSpot();
     var t = $("#tab-" + cats[i].id); if (t.scrollIntoView) t.scrollIntoView({ block: "nearest", inline: "center" });
     try { history.replaceState(null, "", "#" + cats[i].id); } catch (e) {}
   }
@@ -375,12 +498,12 @@ a.row:hover, a.row:focus-visible { background: rgba(196, 149, 95, .2); transform
   document.addEventListener("keydown", function (e) {
     if (e.ctrlKey || e.metaKey || e.altKey) return;
     var k = e.key, tag = e.target && e.target.tagName;
-    if (tag === "INPUT" || tag === "TEXTAREA") return;
-    if (k === "q" || k === "Q") { setCat(state.cat - 1); return; }
-    if (k === "e" || k === "E") { setCat(state.cat + 1); return; }
-    if (k === "Escape") { setCat(0); select(0, true); return; }
-    var list = boxes(); if (!list.length) return;
-    var cur = state.sel[cats[state.cat].id], n = colsOf(list), next = null;
+    if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SUMMARY") return;
+    if (k === "q" || k === "Q") { setCat(state.cat - 1); sfx(); return; }
+    if (k === "e" || k === "E") { setCat(state.cat + 1); sfx(); return; }
+    if (k === "Escape") { setCat(0); if (cats[0].items) select(cats[0], 0, true); sfx(); return; }
+    var cat = cats[state.cat], list = boxes(); if (!list.length) return;
+    var cur = state.sel[cat.id], n = colsOf(list), next = null;
     if (k === "ArrowRight") next = cur + 1;
     else if (k === "ArrowLeft") next = cur - 1;
     else if (k === "ArrowDown") next = (cur + n < list.length) ? cur + n : (Math.floor(cur / n) < Math.floor((list.length - 1) / n) ? list.length - 1 : cur);
@@ -388,31 +511,60 @@ a.row:hover, a.row:focus-visible { background: rgba(196, 149, 95, .2); transform
     else if (k === "Home") next = 0;
     else if (k === "End") next = list.length - 1;
     else if (k === "Enter" && (tag === "BODY" || (e.target.classList && e.target.classList.contains("box")))) { e.preventDefault(); list[cur].click(); return; }
-    if (next != null) { e.preventDefault(); if (next >= 0 && next < list.length) select(next, true); }
+    if (next != null) { e.preventDefault(); if (next >= 0 && next < list.length && next !== cur) { select(cat, next, true); sfx(); } }
   });
 
-  $("#prev").addEventListener("click", function () { setCat(state.cat - 1); });
-  $("#next").addEventListener("click", function () { setCat(state.cat + 1); });
+  $("#prev").addEventListener("click", function () { setCat(state.cat - 1); sfx(); });
+  $("#next").addEventListener("click", function () { setCat(state.cat + 1); sfx(); });
 
-  Array.prototype.forEach.call(document.querySelectorAll(".copy"), function (btn) {
-    btn.addEventListener("click", function () {
-      var text = btn.dataset.copy;
-      function done(ok) { btn.textContent = ok ? "Copiado" : "Seleccionalo"; setTimeout(function () { btn.textContent = "Copiar"; }, 1600); }
-      function sel() { var v = btn.parentNode.querySelector(".v"), r = document.createRange(); r.selectNodeContents(v); var s = getSelection(); s.removeAllRanges(); s.addRange(r); done(false); }
-      try { navigator.clipboard.writeText(text).then(function () { done(true); }, sel); } catch (e) { sel(); }
+  document.addEventListener("click", function (e) {
+    var btn = e.target.closest && e.target.closest(".copy"); if (!btn) return;
+    var text = btn.dataset.copy;
+    function done(ok) { btn.textContent = ok ? "Copiado" : "Seleccionalo"; setTimeout(function () { btn.textContent = "Copiar"; }, 1600); }
+    function sel() { var v = btn.parentNode.querySelector(".v"), r = document.createRange(); r.selectNodeContents(v); var s = getSelection(); s.removeAllRanges(); s.addRange(r); done(false); }
+    try { navigator.clipboard.writeText(text).then(function () { done(true); }, sel); } catch (err) { sel(); }
+  });
+
+  /* ---------- Última versión de Velin (GitHub) ---------- */
+  function applyRelease(j) {
+    var tag = j.tag_name || "";
+    var date = j.published_at ? new Date(j.published_at).toLocaleDateString("es-AR", { day: "numeric", month: "long", year: "numeric" }) : "";
+    Array.prototype.forEach.call(document.querySelectorAll("[data-ver]"), function (el) { if (tag) el.textContent = tag; });
+    Array.prototype.forEach.call(document.querySelectorAll("[data-reldate]"), function (el) { if (date) el.textContent = date; });
+    var exe = null, zip = null;
+    (j.assets || []).forEach(function (a) { if (!exe && /\.exe$/i.test(a.name)) exe = a.browser_download_url; if (!zip && /portable.*\.zip$/i.test(a.name)) zip = a.browser_download_url; });
+    Array.prototype.forEach.call(document.querySelectorAll("[data-dl]"), function (el) {
+      var u = el.getAttribute("data-dl") === "exe" ? exe : zip; if (u) el.href = u;
     });
-  });
+    cats.forEach(function (c) {
+      (c.items || []).forEach(function (it) {
+        if (it.live && tag) it.year = "Última versión " + tag;
+        (it.links || []).forEach(function (l) { if (l.dl) { var u = l.dl === "exe" ? exe : zip; if (u) l.url = u; } });
+      });
+    });
+    updateSpot();
+  }
+  function loadRelease() {
+    var key = "deck-release", cached = lsGet(key);
+    try { if (cached) { var o = JSON.parse(cached); if (o && Date.now() - o.t < 3600000) { applyRelease(o.d); return; } } } catch (e) {}
+    if (!window.fetch) return;
+    fetch("https://api.github.com/repos/Brhenja/Velin/releases/latest", { headers: { Accept: "application/vnd.github+json" } })
+      .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
+      .then(function (j) { lsSet(key, JSON.stringify({ t: Date.now(), d: { tag_name: j.tag_name, published_at: j.published_at, assets: (j.assets || []).map(function (a) { return { name: a.name, browser_download_url: a.browser_download_url }; }) } })); applyRelease(j); })
+      .catch(function () {});
+  }
 
-  var start = 0, h = (location.hash || "").slice(1);
-  cats.forEach(function (c, k) { if (c.id === h) start = k; });
-  setCat(start);
-  window.addEventListener("hashchange", function () { var h2 = location.hash.slice(1); cats.forEach(function (c, k) { if (c.id === h2 && k !== state.cat) setCat(k); }); });
+  /* ---------- Arranque ---------- */
+  function fromHash() { var h = (location.hash || "").slice(1); if (C.aliases && C.aliases[h]) h = C.aliases[h]; for (var k = 0; k < cats.length; k++) if (cats[k].id === h) return k; return -1; }
+  var s0 = fromHash(); setCat(s0 < 0 ? 0 : s0);
+  window.addEventListener("hashchange", function () { var k = fromHash(); if (k >= 0 && k !== state.cat) setCat(k); });
+  loadRelease();
   setTimeout(function () { var b = $("#boot"); if (b) b.remove(); }, 1500);
 
-  /* Brasas flotantes de fondo */
+  /* ---------- Brasas de fondo ---------- */
   var cv = $("#dust"), ctx = cv.getContext("2d"), W, H, parts = [], reduce = matchMedia("(prefers-reduced-motion: reduce)").matches, raf;
   function size() { var dpr = Math.min(devicePixelRatio || 1, 2); W = innerWidth; H = innerHeight; cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); }
-  function seed() { parts = []; var n = Math.round(Math.min(60, W * H / 20000)); for (var i = 0; i < n; i++) parts.push({ x: Math.random() * W, y: Math.random() * H, r: .6 + Math.random() * 1.6, v: .1 + Math.random() * .25, a: .12 + Math.random() * .4, p: Math.random() * 6 }); }
+  function seedP() { parts = []; var n = Math.round(Math.min(60, W * H / 20000)); for (var i = 0; i < n; i++) parts.push({ x: Math.random() * W, y: Math.random() * H, r: .6 + Math.random() * 1.6, v: .1 + Math.random() * .25, a: .12 + Math.random() * .4, p: Math.random() * 6 }); }
   function draw(t) {
     ctx.clearRect(0, 0, W, H);
     for (var i = 0; i < parts.length; i++) {
@@ -421,10 +573,11 @@ a.row:hover, a.row:focus-visible { background: rgba(196, 149, 95, .2); transform
     }
     if (!reduce) raf = requestAnimationFrame(draw);
   }
-  size(); seed(); draw(0);
-  addEventListener("resize", function () { size(); seed(); if (reduce) draw(0); });
+  size(); seedP(); draw(0);
+  addEventListener("resize", function () { size(); seedP(); if (reduce) draw(0); });
   document.addEventListener("visibilitychange", function () { if (document.hidden) cancelAnimationFrame(raf); else if (!reduce) raf = requestAnimationFrame(draw); });
 })();
+
 </script>
 </body>
 </html>
