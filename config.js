@@ -526,7 +526,7 @@ window.SITE = {
           "imgFallback": "https://i.ytimg.com/vi/Q0_SXW16naQ/mqdefault.jpg",
           "kind": "Video",
           "year": "YouTube",
-          "desc": "Mi primer video: una review de Velin. Más adelante voy a subir una mejor.",
+          "desc": "Una review de Velin, ni la edite asi que es medio crota pero va, explica masomenos la mayoria de funciones que trae el launcher bastante bien. Probablemente vaya a subir mas videos sobre Velin en el futuro.",
           "tags": [
             "Velin",
             "Review"
