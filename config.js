@@ -11,6 +11,37 @@ window.SITE = {
     "twitterCard": "summary"
   },
   "brand": "Brhenja",
+  "theme": {
+    "bgDark": "#2a1a0d",
+    "bgMid": "#4a2f17",
+    "bgLight": "#6b4521",
+    "tan": "#c4955f",
+    "cream": "#f1e2c4",
+    "dim": "#d3bd98",
+    "deep": "#140a03",
+    "shade": "#1e1208",
+    "bootBg": "#1d1109",
+    "btnTop": "#8a5a2b",
+    "btnBottom": "#5e3a1a",
+    "btnHoverTop": "#a06b35",
+    "btnHoverBottom": "#6e4521",
+    "fontsUrl": "https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=MedievalSharp&display=swap",
+    "displayFont": "Cinzel",
+    "bodyFont": "MedievalSharp",
+    "baseSize": 17
+  },
+  "fx": {
+    "boot": {
+      "enabled": true,
+      "ms": 1000
+    },
+    "dust": {
+      "enabled": true,
+      "max": 60,
+      "color": "245,196,120"
+    },
+    "artGold": "36,58%,64%"
+  },
   "audio": {
     "music": "audio/bgmusic.mp3",
     "click": "audio/click.wav",
@@ -18,24 +49,40 @@ window.SITE = {
     "clickVolume": 0.5,
     "toggles": true
   },
+  "footer": [
+    {
+      "label": "brhenja.github.io"
+    }
+  ],
   "release": {
     "enabled": true,
     "repo": "Brhenja/Velin",
     "cacheMinutes": 60,
     "locale": "es-AR",
     "liveLabel": "Última versión {ver}",
-    "fallbackVer": "v1.1.1",
+    "fallbackVer": "v1.2.0",
     "fallbackDate": "Windows 10 u 11 de 64 bits",
     "assets": {
       "exe": "\\.exe$",
       "zip": "portable.*\\.zip$"
     }
   },
-  "footer": [
-    {
-      "label": "brhenja.github.io"
-    }
-  ],
+  "ui": {
+    "prevLabel": "Categoría anterior",
+    "nextLabel": "Categoría siguiente",
+    "tabsLabel": "Categorías",
+    "soundGroup": "Sonido",
+    "music": "Música",
+    "musicTitle": "Música de fondo",
+    "sfx": "Sonido",
+    "sfxTitle": "Sonido de click",
+    "copy": "Copiar",
+    "copied": "Copiado",
+    "selectIt": "Seleccionalo",
+    "toTop": "↑ Categorías",
+    "keyPrev": "Q",
+    "keyNext": "E"
+  },
   "aliases": {
     "descargas": "velin/inicio",
     "review": "velin/galeria",
@@ -43,6 +90,47 @@ window.SITE = {
     "preguntas": "velin/preguntas",
     "galeria": "velin/galeria"
   },
+  "news": [
+    {
+      "when": "En curso",
+      "title": "Mod de optimización para Minecraft Java",
+      "text": "Estoy empezando a hacerlo. Cuando tenga algo para probar lo publico acá."
+    },
+    {
+      "when": "11 nov 2026",
+      "title": "Velin 1.2.0",
+      "text": "Nueva version de Velin: Versión de comodidad e infraestructura: un solo .exe, avisos de actualización, accesos directos a instancias, 13 idiomas,\nfiltros en los buscadores, actualización de modpacks de Modrinth e importación desde otros launchers.",
+      "velin": true
+    },
+    {
+      "when": "6 nov 2026",
+      "title": "Una review mejor de Velin",
+      "text": "https://www.youtube.com/watch?v=mHAUxjYubSs"
+    },
+    {
+      "when": "4 nov 2026",
+      "title": "Velin 1.1.1",
+      "text": "Arregla bugs y agrega nuevas mini funciones: paginación, íconos en los detalles de los mods y un gestor de skins.",
+      "velin": true
+    },
+    {
+      "when": "3 nov 2026",
+      "title": "Velin 1.1.0",
+      "text": "Velin ya soporta cuentas premium con el login de Microsoft. También suma detalles de mods, mejoras en la configuración, el tema B&W y soporte para GraalVM y Semeru.",
+      "velin": true
+    },
+    {
+      "when": "21 oct 2026",
+      "title": "Velin 1.0.0",
+      "text": "Primera versión: instancias, loaders (Fabric, Forge, Quilt y NeoForge), Java automático, mods y modpacks de Modrinth y CurseForge, mundos, servidores y temas.",
+      "velin": true
+    },
+    {
+      "when": "21 oct 2026",
+      "title": "Mi primer video",
+      "text": "Una review de Velin, crota y larga."
+    }
+  ],
   "cats": [
     {
       "id": "proyectos",
@@ -446,7 +534,7 @@ window.SITE = {
           "links": [
             {
               "label": "Ver en YouTube",
-              "url": "https://www.youtube.com/watch?v=Q0_SXW16naQ"
+              "url": "https://www.youtube.com/watch?v=mHAUxjYubSs"
             }
           ],
           "art": {
@@ -483,7 +571,7 @@ window.SITE = {
         },
         {
           "type": "p",
-          "text": "Soy Brhenja, suelo hacer proyectos relacionados con Minecraft y en general me gusta la optimización. También me gusta hacer videos, aunque actualmente solo tengo uno subido y es medio croto. Después voy a subir una review mejor de Velin."
+          "text": "Soy Brhenja, suelo hacer proyectos relacionados con Minecraft y en general me gusta la optimización. También me gusta hacer videos, aunque actualmente tengo pocos subidos y son de dudosa calidad."
         },
         {
           "type": "p",
@@ -498,7 +586,7 @@ window.SITE = {
           "items": [
             {
               "term": "Proyecto actual",
-              "text": "Velin, [brhenja.github.io/Velin](https://brhenja.github.io/Velin)"
+              "text": "Velin, [brhenja.github.io/#velin/](https://brhenja.github.io/#velin/inicio)"
             },
             {
               "term": "Plataforma",
@@ -506,11 +594,15 @@ window.SITE = {
             },
             {
               "term": "Idiomas",
-              "text": "Español e inglés"
+              "text": "Español, Ingles y 13 mas que me da paja nombrar."
             },
             {
               "term": "Próximamente",
-              "text": "Actualizaciones de Velin y un mod de optimización"
+              "text": "Actualizaciones de Velin, un mod de optimizacion Y un sistema operativo.."
+            },
+            {
+              "term": "Ayudantes a la causa",
+              "text": "Sujeto 1122 :)"
             }
           ]
         }
@@ -548,41 +640,6 @@ window.SITE = {
           ]
         }
       ]
-    }
-  ],
-  "news": [
-    {
-      "when": "En curso",
-      "title": "Mod de optimización para Minecraft Java",
-      "text": "Estoy empezando a hacerlo. Cuando tenga algo para probar lo publico acá."
-    },
-    {
-      "when": "Próximamente",
-      "title": "Una review mejor de Velin",
-      "text": "Voy a subir un video nuevo para reemplazar al primero."
-    },
-    {
-      "when": "4 nov 2026",
-      "title": "Velin 1.1.1",
-      "text": "Arregla bugs y agrega nuevas mini funciones: paginación, íconos en los detalles de los mods y un gestor de skins.",
-      "velin": true
-    },
-    {
-      "when": "3 nov 2026",
-      "title": "Velin 1.1.0",
-      "text": "Velin ya soporta cuentas premium con el login de Microsoft. También suma detalles de mods, mejoras en la configuración, el tema B&W y soporte para GraalVM y Semeru.",
-      "velin": true
-    },
-    {
-      "when": "21 oct 2026",
-      "title": "Velin 1.0.0",
-      "text": "Primera versión: instancias, loaders (Fabric, Forge, Quilt y NeoForge), Java automático, mods y modpacks de Modrinth y CurseForge, mundos, servidores y temas.",
-      "velin": true
-    },
-    {
-      "when": "Publicado",
-      "title": "Mi primer video",
-      "text": "Una review de Velin, hecha sin muchas vueltas."
     }
   ]
 };
