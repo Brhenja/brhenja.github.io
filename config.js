@@ -423,7 +423,7 @@ window.SITE = {
               "links": [
                 {
                   "label": "Ver en YouTube",
-                  "url": "https://www.youtube.com/watch?v=Q0_SXW16naQ"
+                  "url": "https://www.youtube.com/watch?v=mHAUxjYubSs"
                 }
               ],
               "art": {
