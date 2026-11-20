@@ -43,7 +43,7 @@ window.SITE = {
     "artGold": "36,58%,64%"
   },
   "audio": {
-    "music": "audio/bgmusic.mp3",
+    "music": "",
     "click": "audio/click.wav",
     "musicVolume": 0.28,
     "clickVolume": 0.5,
@@ -60,7 +60,7 @@ window.SITE = {
     "cacheMinutes": 60,
     "locale": "es-AR",
     "liveLabel": "Última versión {ver}",
-    "fallbackVer": "v1.2.0",
+    "fallbackVer": "v1.3.0",
     "fallbackDate": "Windows 10 u 11 de 64 bits",
     "assets": {
       "exe": "\\.exe$",
@@ -91,6 +91,12 @@ window.SITE = {
     "galeria": "velin/galeria"
   },
   "news": [
+    {
+      "when": "20 nov 2026",
+      "title": "Velin 1.3.0",
+      "text": "Nueva versión de Velin: Versión de calidad: menos consumo, mejor soporte para pantallas con escala (HiDPI), analizador de crashes, capas y historial de skins, actualización de modpacks de CurseForge y arrastrar archivos fuera de la Vault.",
+      "velin": true
+    },
     {
       "when": "En curso",
       "title": "Mod de optimización para Minecraft Java",
